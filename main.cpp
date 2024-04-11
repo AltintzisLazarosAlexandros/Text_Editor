@@ -32,7 +32,8 @@ void Menu(){
         cout << "Tell me what extension you are going to use:\n"
             << "1. C file (.c)\n"
             << "2. C++ file (.cpp)\n"
-            << "3. Text file (.txt)\n";
+            << "3. Text file (.txt)\n"
+            << "4. Java file (.java)\n";
         int opt;
         string extension;
         cin >> opt;
@@ -46,6 +47,9 @@ void Menu(){
             break;
         case 3:
             extension = ".txt";
+            break;
+        case 4:
+            extension = ".java";
             break;
         }
         name = filename + extension; 
@@ -73,8 +77,9 @@ int main(){
     }
     system("cls");
     cout << "To quit the file use !quit\n";
-    while(cin >> input && input != "!quit"){
+    while(getline(cin,input) && input != "!quit"){
         fout << input << endl; 
     }
+    fout.close();
     return 0;
 }
