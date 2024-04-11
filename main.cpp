@@ -1,9 +1,9 @@
 #include "Declarations.h"
-//TODO:
+//TODO: Make the program to show what is already written in the selected file (if it has anything)
 
 //Global variables
 fstream fout;
-string name;
+string filename;
 
 //Functions
 bool FileExists(string& filename){
@@ -11,23 +11,33 @@ bool FileExists(string& filename){
     return fout.good();
 }
 bool IfInString(string& string){
-    for(int i = 0; i < string.size(); ++i){
+    for(size_t i = 0; i < string.size(); ++i){
         if(string.find(".") != string::npos){
             return true;
         }
     }
     return false;
 }
+pair<string, string> SplitFilename(const string& filename) {
+    size_t dotIndex = filename.find_last_of('.'); // Finds the index where the extension begins
+    // If there is one then we split the filename to 2 strings to manage it better
+    if (dotIndex != string::npos && dotIndex > 0 && dotIndex < filename.length() - 1) {
+        string name = filename.substr(0, dotIndex);
+        string extension = filename.substr(dotIndex + 1);
+        return make_pair(name, extension);
+    }
+    return make_pair(" "," ");
+}
 void Menu(){
-    string filename;
+    string name;
     cout << "Give me the name of your file or write 0 to quit the app:\n";
-    cin >> filename;
-    if(filename.compare("0") == 0){
-        name = filename;
+    cin >> name;
+    if(name.compare("0") == 0){
+        filename = name;
         return;
     }
-    if(IfInString(filename)){
-        name = filename;
+    if(IfInString(name)){
+        filename = name;
     }else{
         cout << "Tell me what extension you are going to use:\n"
             << "1. C file (.c)\n"
@@ -52,23 +62,46 @@ void Menu(){
             extension = ".java";
             break;
         }
-        name = filename + extension; 
+        filename = name + extension; 
     }
 }
 
 //Main program
 int main(){
     string input;//variable for writing into the file
+    char opt;
     Menu();
-    if(name.compare("0") == 0){
+    if(filename.compare("0") == 0){
         cout << "Program succesfully closed";
         return 0;
     }
-    if(FileExists(name)){
-        fout.open(name, ios::out| ios::app);//Opening the file to append new input
-        cout << "File Opened.\n";
+    if(FileExists(filename)){
+        cout << "File Found.\n"
+             <<"Do you want to open the found file or make a new one ?\t"
+             <<"(Y or y for Opening the file, N or n for No For making a new one)\n";
+        do{
+            cin >> opt;
+            if(opt != 'Y' && opt!='y' && opt != 'N' && opt != 'n'){
+                cout << "Wrong option. Please try again.\n";
+            }
+        }while(opt != 'Y' && opt!='y' && opt != 'N' && opt != 'n');
+        if(opt == 'N' || opt == 'n'){
+            int i = 1;
+            pair<string,string> parts = SplitFilename(filename);
+            const string BaseFilename = parts.first; //FIXME: Make it simplier later :)
+            while(FileExists(filename)){
+                pair<string,string> parts = SplitFilename(filename);
+                filename = BaseFilename + "_" + to_string(i) + "."+ parts.second;
+                ++i;
+            }
+            fout.open(filename, ios::out | ios::app);//Opening the file to append new input
+            cout << "File Opened.\n";
+        }else{
+            fout.open(filename, ios::out | ios::trunc);
+            cout << "File Created.\n";
+        }
     }else{
-        fout.open(name, ios::out | ios::trunc);//Creating the file if it's new
+        fout.open(filename, ios::out | ios::trunc);//Creating the file if it's new
         cout << "File Created.\n";
     }
     for(int i = 3; i > 0; --i){
