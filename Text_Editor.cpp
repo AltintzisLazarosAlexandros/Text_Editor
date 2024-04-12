@@ -1,9 +1,10 @@
 #include "Declarations.h"
+//TODO: Make a way to delete files while the program is running
 //TODO: Add a method to list all Files
 
 //Global variables
 fstream fout,fin;
-string filename;
+string filename,command;
 
 //Functions
 void ClearScreen(){
@@ -37,39 +38,81 @@ pair<string, string> SplitFilename(const string& filename) {
 }
 void Menu(){
     string name;
-    cout << "Give me the name of your file or write !Exit to quit the app:\n";
-    cin >> name;
-    if(name.compare("!Exit") == 0 || name.compare("!exit") == 0){
-        filename = name;
+    cout << "Welcome to the Text_Editor app. Select a command:\n"
+         << "!Make (To make a file)\n"
+         << "!Reset (To reset a file)\n"
+         << "!List (To list all file)\n"
+         << "!Exit (To exit the program)\n";
+        do{
+            cin >> command;
+            if(command.compare("!Exit") != 0 && command.compare("!exit") != 0 && command.compare("!Reset") != 0 && command.compare("!reset") != 0 && command.compare("!Make") != 0 && command.compare("!make") != 0 && command.compare("!List") != 0 && command.compare("!list") != 0){
+                 cout << "Wrong command. Please try again.\n";
+            }
+        }while(command.compare("!Exit") != 0 && command.compare("!exit") != 0 && command.compare("!Reset") != 0 && command.compare("!reset") != 0 && command.compare("!Make") != 0 && command.compare("!make") != 0 && command.compare("!List") != 0 && command.compare("!list") != 0);
+    if(command.compare("!Exit") == 0 || command.compare("!exit") == 0){
         return;
-    }
-    if(IfInString(name)){
-        filename = name;
-    }else{
-        cout << "Tell me what extension you are going to use:\n"
-            << "1. C file (.c)\n"
-            << "2. C++ file (.cpp)\n"
-            << "3. Text file (.txt)\n"
-            << "4. Java file (.java)\n";
-        int opt;
-        string extension;
-        cin >> opt;
-        switch (opt)
-        {
-        case 1:
-            extension = ".c";
-            break;
-        case 2:
-            extension = ".cpp";
-            break;
-        case 3:
-            extension = ".txt";
-            break;
-        case 4:
-            extension = ".java";
-            break;
+    }else if(command.compare("!Make") == 0 || command.compare("!make") == 0){
+        cout << "Give me the name of your file:\n";
+        cin >> name;
+        if(IfInString(name)){
+            filename = name;
+        }else{
+            cout << "Tell me what extension you are going to use:\n"
+                << "1. C file (.c)\n"
+                << "2. C++ file (.cpp)\n"
+                << "3. Text file (.txt)\n"
+                << "4. Java file (.java)\n";
+            int opt;
+            string extension;
+            cin >> opt;
+            switch (opt)
+            {
+            case 1:
+                extension = ".c";
+                break;
+            case 2:
+                extension = ".cpp";
+                break;
+            case 3:
+                extension = ".txt";
+                break;
+            case 4:
+                extension = ".java";
+                break;
+            }
+            filename = name + extension; 
         }
-        filename = name + extension; 
+    }else if(command.compare("!Reset") == 0 || command.compare("!reset") == 0){
+        cout << "Give me the name of the file you want to reset:\n";
+        cin >> name;
+        if(IfInString(name)){
+            filename = name;
+        }else{
+            cout << "Tell me what the extension your file has:\n"
+                << "1. C file (.c)\n"
+                << "2. C++ file (.cpp)\n"
+                << "3. Text file (.txt)\n"
+                << "4. Java file (.java)\n";
+            int opt;
+            string extension;
+            cin >> opt;
+            switch (opt)
+            {
+            case 1:
+                extension = ".c";
+                break;
+            case 2:
+                extension = ".cpp";
+                break;
+            case 3:
+                extension = ".txt";
+                break;
+            case 4:
+                extension = ".java";
+                break;
+            }
+            filename = name + extension; 
+        }
     }
 }
 
@@ -80,9 +123,19 @@ int main(){
     int flag = 1;
     do{
         Menu();
-        if(filename.compare("!Exit") == 0 || filename.compare("!exit") == 0){
+        if(command.compare("!Exit") == 0 || command.compare("!exit") == 0){
             cout << "Program succesfully closed.\n";
             flag = 0;
+        }else if(command.compare("!Reset") == 0 || command.compare("!reset") == 0){
+            if(FileExists(filename)){
+                cout << "File Found.\n"
+                     << "Reseting it...\n";
+                fout.open(filename, ios::out | ios::trunc);
+                fout.close();
+                cout << "Your File has been reset.\n";
+            }else{
+                cout << "Make sure file exists!\n";
+            }
         }else{
             if(FileExists(filename)){
                 cout << "File Found.\n"
