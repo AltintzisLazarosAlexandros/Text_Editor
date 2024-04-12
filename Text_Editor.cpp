@@ -1,15 +1,15 @@
 #include "Declarations.h"
-//TODO: Make the program to show what is already written in the selected file (if it has anything)
+//TODO: Add a method to list all Files
 
 //Global variables
-fstream fout;
+fstream fout,fin;
 string filename;
 
 //Functions
 void ClearScreen(){
     for(int i = 3; i > 0; --i){
         cout << "\rClearing screen in "<< i <<flush;
-        this_thread::sleep_for(std::chrono::seconds(1));
+        this_thread::sleep_for(chrono::seconds(1));
     }
     system("cls");
 }
@@ -39,7 +39,7 @@ void Menu(){
     string name;
     cout << "Give me the name of your file or write !Exit to quit the app:\n";
     cin >> name;
-    if(name.compare("!Exit") == 0){
+    if(name.compare("!Exit") == 0 || name.compare("!exit") == 0){
         filename = name;
         return;
     }
@@ -80,8 +80,8 @@ int main(){
     int flag = 1;
     do{
         Menu();
-        if(filename.compare("!Exit") == 0){
-            cout << "Program succesfully closed\n";
+        if(filename.compare("!Exit") == 0 || filename.compare("!exit") == 0){
+            cout << "Program succesfully closed.\n";
             flag = 0;
         }else{
             if(FileExists(filename)){
@@ -103,10 +103,11 @@ int main(){
                         filename = BaseFilename + "_" + to_string(i) + "."+ parts.second;
                         ++i;
                     }
-                    fout.open(filename, ios::out | ios::app);//Opening the file to append new input
+                    fout.open(filename, ios::out | ios::trunc);//Opening the file to append new input
                     cout << "File Created.\n";
                 }else{
-                    fout.open(filename, ios::out | ios::trunc);
+                    fin.open(filename, ios::in | ios::app);
+                    fout.open(filename, ios::out | ios::app);
                     cout << "File Opened.\n";
                 }
             }else{
@@ -115,6 +116,12 @@ int main(){
             }
             ClearScreen();
             cout << "To quit the file use !quit\n";
+            if(bool(fin.good())){
+                while(getline(fin,input) && !fout.eof()){
+                    cout << input << endl;
+                }
+                fin.close();
+            }
             while(getline(cin,input) && input != "!quit"){
                 fout << input << endl; 
             }
@@ -123,6 +130,9 @@ int main(){
             if(flag != 0){
                 cout << "Wanna run the program again ? (1 for Yes/ 0 for No)\n";
                 cin >> flag;
+            }
+            if(flag == 0){
+                cout << "Program succesfully closed.\n";
             }
         }
     }while(flag == 1);
