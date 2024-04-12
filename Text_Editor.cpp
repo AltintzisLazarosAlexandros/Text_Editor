@@ -6,6 +6,13 @@ fstream fout;
 string filename;
 
 //Functions
+void ClearScreen(){
+    for(int i = 3; i > 0; --i){
+        cout << "\rClearing screen in "<< i <<flush;
+        this_thread::sleep_for(std::chrono::seconds(1));
+    }
+    system("cls");
+}
 bool FileExists(string& filename){
     fstream fout(filename);
     return fout.good();
@@ -106,21 +113,18 @@ int main(){
                 fout.open(filename, ios::out | ios::trunc);//Creating the file if it's new
                 cout << "File Created.\n";
             }
-            for(int i = 3; i > 0; --i){
-                cout << "\rClearing screen in "<< i <<flush;
-                this_thread::sleep_for(std::chrono::seconds(1));
-            }
-            system("cls");
+            ClearScreen();
             cout << "To quit the file use !quit\n";
             while(getline(cin,input) && input != "!quit"){
                 fout << input << endl; 
             }
+            fout.close();
+            ClearScreen();
             if(flag != 0){
                 cout << "Wanna run the program again ? (1 for Yes/ 0 for No)\n";
                 cin >> flag;
             }
         }
     }while(flag == 1);
-    fout.close();
     return 0;
 }
