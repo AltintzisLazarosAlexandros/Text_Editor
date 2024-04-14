@@ -7,6 +7,8 @@
 #include <chrono>
 #include <thread>
 #include <Windows.h>
+#include <cstdio>
+#include <limits>
 using namespace std;
 
 
