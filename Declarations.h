@@ -9,6 +9,7 @@
 #include <Windows.h>
 #include <cstdio>
 #include <limits>
+#include <algorithm>
 using namespace std;
 
 
