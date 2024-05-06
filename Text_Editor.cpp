@@ -1,6 +1,6 @@
-#include "Declarations.h"
-//TODO: Make a way to delete files while the program is running
-//TODO: Add a method to list all Files
+#include "Declarations.hpp"
+//TODO: Access whatever the file has in and manipulate it 
+//TODO:  
 
 //Global variables
 fstream fout,fin;
@@ -38,20 +38,7 @@ void FilenameCreation(string& name){
         int opt;
         string extension;
         do{
-            try
-            {
-                cin >> opt;
-                if (opt <= 0|| opt >= 5)
-                {
-                    throw opt;
-                }
-            }
-            catch (int& option)
-            {
-                cin.clear();
-                cin.ignore(numeric_limits<streamsize>::max(), '\n');
-                cerr << "Invalid selection. Must be a number between 1-4.\n";
-            }
+           opt = Exception();
         }while(opt <= 0 || opt >= 5);
         switch (opt)
         {
@@ -81,6 +68,7 @@ pair<string, string> SplitFilename(const string& filename) {
     }
     return make_pair(" "," ");
 }
+//Take the command to do the action required
 void Menu(){
     string name;
     cout << "Welcome to the Text_Editor app. Select a command:\n"
@@ -89,12 +77,12 @@ void Menu(){
          << "!List (To list all file)\n"
          << "!Delete (To delete a file)\n"
          << "!Exit (To exit the program)\n";
-        do{
-            cin >> command;
-            if(command.compare("!Exit") != 0 && command.compare("!exit") != 0 && command.compare("!Reset") != 0 && command.compare("!reset") != 0 && command.compare("!Make") != 0 && command.compare("!make") != 0 && command.compare("!List") != 0 && command.compare("!list") != 0 && command.compare("!Delete") != 0 && command.compare("!delete") != 0){
-                 cout << "Wrong command. Please try again.\n";
-            }
-        }while(command.compare("!Exit") != 0 && command.compare("!exit") != 0 && command.compare("!Reset") != 0 && command.compare("!reset") != 0 && command.compare("!Make") != 0 && command.compare("!make") != 0 && command.compare("!List") != 0 && command.compare("!list") != 0 && command.compare("!Delete") != 0 && command.compare("!delete") != 0);
+    do{
+        cin >> command;
+        if(command.compare("!Exit") != 0 && command.compare("!exit") != 0 && command.compare("!Reset") != 0 && command.compare("!reset") != 0 && command.compare("!Make") != 0 && command.compare("!make") != 0 && command.compare("!List") != 0 && command.compare("!list") != 0 && command.compare("!Delete") != 0 && command.compare("!delete") != 0){
+            cout << "Wrong command. Please try again.\n";
+        }
+    }while(command.compare("!Exit") != 0 && command.compare("!exit") != 0 && command.compare("!Reset") != 0 && command.compare("!reset") != 0 && command.compare("!Make") != 0 && command.compare("!make") != 0 && command.compare("!List") != 0 && command.compare("!list") != 0 && command.compare("!Delete") != 0 && command.compare("!delete") != 0);
     if(command.compare("!Exit") == 0 || command.compare("!exit") == 0){
         return;
     }else if(command.compare("!Make") == 0 || command.compare("!make") == 0){
@@ -109,12 +97,15 @@ void Menu(){
         cout << "Give me the name of the file you want to delete:\n";
         cin >> name;
         FilenameCreation(name);
+    }else if(command.compare("!List") == 0 || command.compare("!list") == 0){
+        return;
     }
 }
 
 //Main program
 int main(){
     string input;//variable for writing into the file
+    //Next to lines are used as flags
     char opt;
     int flag = 1;
     do{
@@ -179,12 +170,24 @@ int main(){
         }else if(command.compare("!Delete") == 0 || command.compare("!delete") == 0){
             if(FileExists(filename)){
                 cout << "File Found.\n"
-                     << "Deleting it...\n";
+                     << "Deleting it..."<<flush;
                 remove(filename.c_str());
                 cout << "Your File has been deleted.\n";
             }else{
                 cout << "Make sure file exists!\n";
             }
+        }else if(command.compare("!List") == 0 || command.compare("!list") == 0){
+            cout << "Which kind of list do you need ?\n"
+                 << "!Simple\n"
+                 << "!Detailed\n";
+            do{
+                cin >> command;
+                if(command.compare("!Detailed") != 0 && command.compare("!detailed") != 0 && command.compare("!Simple") != 0 && command.compare("!simple") != 0){
+                    cout << "Wrong command. Please try again.\n";
+                }
+            }while(command.compare("!Detailed") != 0 && command.compare("!detailed") != 0 && command.compare("!Simple") != 0 && command.compare("!simple") != 0);
+            if(command.compare("!Detailed") == 0 || command.compare("!detailed") == 0) system("dir");
+            else system("dir /B");  
         }
         if(flag != 0){
             cout << "Wanna run the program again ? (1 for Yes/ 0 for No)\n";

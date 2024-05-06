@@ -29,7 +29,6 @@ inline int Exception(){
         cin.ignore(numeric_limits<streamsize>::max(), '\n');
         cerr << "Invalid selection. Must be a number between 1-4.\n";
     }
-    cin.ignore(numeric_limits<streamsize>::max(), '\n');
     return opt;
 }
 
