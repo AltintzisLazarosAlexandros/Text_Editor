@@ -6,4 +6,6 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS ON)
 
-add_executable(Text_Editor Text_Editor.cpp)
+include_directories(include)
+
+add_executable(Text_Editor src/Text_Editor.cpp)
