@@ -82,32 +82,40 @@ void Menu(){
     //FIXME:Make it a bit better :)
     do{
         cin >> command;
-        if(command.compare("!Exit") != 0 && command.compare("!exit") != 0 && command.compare("!Reset") != 0 && command.compare("!reset") != 0 && command.compare("!Make") != 0 && command.compare("!make") != 0 && command.compare("!List") != 0 && command.compare("!list") != 0 && command.compare("!Delete") != 0 && command.compare("!delete") != 0 && command.compare("!Help") != 0 && command.compare("!help") != 0 && command.compare("!Open") != 0 && command.compare("!open") != 0 && command.compare("!E") != 0 && command.compare("!e") != 0 && command.compare("!D") != 0 && command.compare("!d") != 0 && command.compare("!R") != 0 && command.compare("!r") != 0 && command.compare("!M") != 0 && command.compare("!m") != 0 && command.compare("!H") != 0 && command.compare("!h") != 0 && command.compare("!L") != 0 && command.compare("!l") != 0 && command.compare("!LS") != 0 && command.compare("!ls") != 0 && command.compare("!O") != 0 && command.compare("!o") != 0){
+        if(command.compare("!Exit") != 0 && command.compare("!exit") != 0 && command.compare("!Reset") != 0 && command.compare("!reset") != 0 && command.compare("!Make") != 0 && command.compare("!make") != 0 && command.compare("!List") != 0 && command.compare("!list") != 0 && command.compare("!Delete") != 0 && command.compare("!delete") != 0 && 
+        command.compare("!Help") != 0 && command.compare("!help") != 0 && command.compare("!Open") != 0 && command.compare("!open") != 0 && command.compare("!E") != 0 && command.compare("!e") != 0 && command.compare("!D") != 0 && command.compare("!d") != 0 && command.compare("!R") != 0 && command.compare("!r") != 0 && command.compare("!M") != 0 && 
+        command.compare("!m") != 0 && command.compare("!H") != 0 && command.compare("!h") != 0 && command.compare("!L") != 0 && command.compare("!l") != 0 && command.compare("!LS") != 0 && command.compare("!ls") != 0 && command.compare("!O") != 0 && command.compare("!o") != 0){
             cout << "Wrong command. Please try again.\n";
         }
-    }while(command.compare("!Exit") != 0 && command.compare("!exit") != 0 && command.compare("!Reset") != 0 && command.compare("!reset") != 0 && command.compare("!Make") != 0 && command.compare("!make") != 0 && command.compare("!List") != 0 && command.compare("!list") != 0 && command.compare("!Delete") != 0 && command.compare("!delete") != 0 && command.compare("!Help") != 0 && command.compare("!help") != 0 && command.compare("!Open") != 0 && command.compare("!open") != 0 && command.compare("!E") != 0 && command.compare("!e") != 0 && command.compare("!D") != 0 && command.compare("!d") != 0 && command.compare("!R") != 0 && command.compare("!r") != 0 && command.compare("!M") != 0 && command.compare("!m") != 0 && command.compare("!H") != 0 && command.compare("!h") != 0 && command.compare("!L") != 0 && command.compare("!l") != 0 && command.compare("!LS") != 0 && command.compare("!ls") != 0 && command.compare("!O") != 0 && command.compare("!o") != 0);
+    }while(command.compare("!Exit") != 0 && command.compare("!exit") != 0 && command.compare("!Reset") != 0 && command.compare("!reset") != 0 && command.compare("!Make") != 0 && command.compare("!make") != 0 && command.compare("!List") != 0 && command.compare("!list") != 0 && command.compare("!Delete") != 0 && command.compare("!delete") != 0 && 
+    command.compare("!Help") != 0 && command.compare("!help") != 0 && command.compare("!Open") != 0 && command.compare("!open") != 0 && command.compare("!E") != 0 && command.compare("!e") != 0 && command.compare("!D") != 0 && command.compare("!d") != 0 && command.compare("!R") != 0 && command.compare("!r") != 0 && command.compare("!M") != 0 && 
+    command.compare("!m") != 0 && command.compare("!H") != 0 && command.compare("!h") != 0 && command.compare("!L") != 0 && command.compare("!l") != 0 && command.compare("!LS") != 0 && command.compare("!ls") != 0 && command.compare("!O") != 0 && command.compare("!o") != 0);
     if(command.compare("!Exit") == 0 || command.compare("!exit") == 0 || command.compare("!E") == 0 || command.compare("!e") == 0 ){
         return;
     }else if(command.compare("!Make") == 0 || command.compare("!make") == 0 || command.compare("!M") == 0 || command.compare("!m") == 0){
         cout << "Please enter the name of the file you want to create:\n";
         cin >> name;
         FilenameCreation(name);
+        return;
     }else if(command.compare("!Reset") == 0 || command.compare("!reset") == 0 || command.compare("!R") == 0 || command.compare("!r") == 0){
         cout << "Give me the name of the file you want to reset:\n";
         cin >> name;
         FilenameCreation(name);
+        return;
     }else if(command.compare("!Delete") == 0 || command.compare("!delete") == 0 || command.compare("!D") == 0 || command.compare("!d") == 0){
         cout << "Give me the name of the file you want to delete:\n";
         cin >> name;
         FilenameCreation(name);
+        return;
     }else if(command.compare("!List") == 0 || command.compare("!list") == 0 || command.compare("!L") == 0 || command.compare("!l") == 0 || command.compare("!list") == 0 || command.compare("!LS") == 0 || command.compare("!ls") == 0){
         return;
     }else if(command.compare("!Help") == 0 || command.compare("!help") == 0 || command.compare("!H") == 0 || command.compare("!h") == 0){
         return;
     }else if(command.compare("!Open") == 0 || command.compare("!open") == 0 || command.compare("!O") == 0 || command.compare("!o") == 0){
-        cout << "Please enter the name of the file you want to modify:\n";
+        /*cout << "Please enter the name of the file you want to modify:\n";
         cin >> name;
-        FilenameCreation(name);
+        FilenameCreation(name);*/
+        return;
     }
 }
 
@@ -232,18 +240,19 @@ int main(){
                     fout.close();
             }
         }else if(command.compare("!Open") == 0 || command.compare("!open") == 0 || command.compare("!O") == 0 || command.compare("!o") == 0){
+            cout << "Not ready yet please use another function\n";
             ClearScreen();
-            fin.open(filename, ios::in);
-            if(bool(fin.good())){
-                cout << "File Found!\n";
-                ClearScreen();
-                cout << "To quit the file use !quit\n";
-                while(getline(fin,input) && !fout.eof()){
-                    cout << input << endl;
-                }
-                fin.close();
-            }            
-            //fout.open(filename, ios::out | ios::trunc);
+            // fin.open(filename, ios::in);
+            // if(bool(fin.good())){
+            //     cout << "File Found!\n";
+            //     ClearScreen();
+            //     cout << "To quit the file use !quit\n";
+            //     while(getline(fin,input) && !fout.eof()){
+            //         cout << input << endl;
+            //     }
+            //     fin.close();
+            // }            
+            // fout.open(filename, ios::out | ios::trunc);
         }
         if(flag != 0){
             cout << "Wanna run the program again ? (1 for Yes/ 0 for No)\n";
