@@ -1,4 +1,4 @@
-#include "Declarations.hpp"
+#include "../include/Declarations.hpp"
 //TODO: Access whatever the file has in and manipulate it 
 //TODO:  
 
