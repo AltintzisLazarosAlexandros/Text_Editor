@@ -73,6 +73,7 @@ void Menu(){
     string name;
     cout << "Welcome to the Text_Editor app. Select a command:\n"
          << "!Make (To make a file)\n"
+         << "!Open (To open a file)\n"
          << "!Reset (To reset a file)\n"
          << "!List (To list all file)\n"
          << "!Help (To show all the commands)\n"
@@ -81,14 +82,14 @@ void Menu(){
     //FIXME:Make it a bit better :)
     do{
         cin >> command;
-        if(command.compare("!Exit") != 0 && command.compare("!exit") != 0 && command.compare("!Reset") != 0 && command.compare("!reset") != 0 && command.compare("!Make") != 0 && command.compare("!make") != 0 && command.compare("!List") != 0 && command.compare("!list") != 0 && command.compare("!Delete") != 0 && command.compare("!delete") != 0 && command.compare("!Help") != 0 && command.compare("!help") != 0 && command.compare("!E") != 0 && command.compare("!e") != 0 && command.compare("!D") != 0 && command.compare("!d") != 0 && command.compare("!R") != 0 && command.compare("!r") != 0 && command.compare("!M") != 0 && command.compare("!m") != 0 && command.compare("!H") != 0 && command.compare("!h") != 0 && command.compare("!L") != 0 && command.compare("!l") != 0 ){
+        if(command.compare("!Exit") != 0 && command.compare("!exit") != 0 && command.compare("!Reset") != 0 && command.compare("!reset") != 0 && command.compare("!Make") != 0 && command.compare("!make") != 0 && command.compare("!List") != 0 && command.compare("!list") != 0 && command.compare("!Delete") != 0 && command.compare("!delete") != 0 && command.compare("!Help") != 0 && command.compare("!help") != 0 && command.compare("!Open") != 0 && command.compare("!open") != 0 && command.compare("!E") != 0 && command.compare("!e") != 0 && command.compare("!D") != 0 && command.compare("!d") != 0 && command.compare("!R") != 0 && command.compare("!r") != 0 && command.compare("!M") != 0 && command.compare("!m") != 0 && command.compare("!H") != 0 && command.compare("!h") != 0 && command.compare("!L") != 0 && command.compare("!l") != 0 && command.compare("!LS") != 0 && command.compare("!ls") != 0 && command.compare("!O") != 0 && command.compare("!o") != 0){
             cout << "Wrong command. Please try again.\n";
         }
-    }while(command.compare("!Exit") != 0 && command.compare("!exit") != 0 && command.compare("!Reset") != 0 && command.compare("!reset") != 0 && command.compare("!Make") != 0 && command.compare("!make") != 0 && command.compare("!List") != 0 && command.compare("!list") != 0 && command.compare("!Delete") != 0 && command.compare("!delete") != 0&& command.compare("!Help") != 0 && command.compare("!help") != 0 && command.compare("!E") != 0 && command.compare("!e") != 0 && command.compare("!D") != 0 && command.compare("!d") != 0 && command.compare("!R") != 0 && command.compare("!r") != 0 && command.compare("!M") != 0 && command.compare("!m") != 0 && command.compare("!H") != 0 && command.compare("!h") != 0 && command.compare("!L") != 0 && command.compare("!l") != 0 );
+    }while(command.compare("!Exit") != 0 && command.compare("!exit") != 0 && command.compare("!Reset") != 0 && command.compare("!reset") != 0 && command.compare("!Make") != 0 && command.compare("!make") != 0 && command.compare("!List") != 0 && command.compare("!list") != 0 && command.compare("!Delete") != 0 && command.compare("!delete") != 0 && command.compare("!Help") != 0 && command.compare("!help") != 0 && command.compare("!Open") != 0 && command.compare("!open") != 0 && command.compare("!E") != 0 && command.compare("!e") != 0 && command.compare("!D") != 0 && command.compare("!d") != 0 && command.compare("!R") != 0 && command.compare("!r") != 0 && command.compare("!M") != 0 && command.compare("!m") != 0 && command.compare("!H") != 0 && command.compare("!h") != 0 && command.compare("!L") != 0 && command.compare("!l") != 0 && command.compare("!LS") != 0 && command.compare("!ls") != 0 && command.compare("!O") != 0 && command.compare("!o") != 0);
     if(command.compare("!Exit") == 0 || command.compare("!exit") == 0 || command.compare("!E") == 0 || command.compare("!e") == 0 ){
         return;
     }else if(command.compare("!Make") == 0 || command.compare("!make") == 0 || command.compare("!M") == 0 || command.compare("!m") == 0){
-        cout << "Give me the name of your file:\n";
+        cout << "Please enter the name of the file you want to create:\n";
         cin >> name;
         FilenameCreation(name);
     }else if(command.compare("!Reset") == 0 || command.compare("!reset") == 0 || command.compare("!R") == 0 || command.compare("!r") == 0){
@@ -99,10 +100,14 @@ void Menu(){
         cout << "Give me the name of the file you want to delete:\n";
         cin >> name;
         FilenameCreation(name);
-    }else if(command.compare("!List") == 0 || command.compare("!list") == 0 || command.compare("!L") == 0 || command.compare("!l") == 0){
+    }else if(command.compare("!List") == 0 || command.compare("!list") == 0 || command.compare("!L") == 0 || command.compare("!l") == 0 || command.compare("!list") == 0 || command.compare("!LS") == 0 || command.compare("!ls") == 0){
         return;
     }else if(command.compare("!Help") == 0 || command.compare("!help") == 0 || command.compare("!H") == 0 || command.compare("!h") == 0){
         return;
+    }else if(command.compare("!Open") == 0 || command.compare("!open") == 0 || command.compare("!O") == 0 || command.compare("!o") == 0){
+        cout << "Please enter the name of the file you want to modify:\n";
+        cin >> name;
+        FilenameCreation(name);
     }
 }
 
@@ -180,7 +185,7 @@ int main(){
             }else{
                 cout << "Make sure file exists!\n";
             }
-        }else if(command.compare("!List") == 0 || command.compare("!list") == 0 || command.compare("!L") == 0 || command.compare("!l") == 0){
+        }else if(command.compare("!List") == 0 || command.compare("!list") == 0 || command.compare("!L") == 0 || command.compare("!l") == 0|| command.compare("!LS") == 0 || command.compare("!ls") == 0){
             cout << "Which kind of list do you need ?\n"
                  << "!Simple\n"
                  << "!Detailed\n";
@@ -198,11 +203,12 @@ int main(){
             cout << "!Delete: To delete a file (!D/!d/!Delete/!delete)\n"
                  << "!Exit: To exit the program (!E/!e/!Exit/!exit)\n"
                  << "!Help: To show this list (!H/!h/!Help/!help)\n"
-                 << "!List: To list all the files and directories in the place where the application is located (!L/!l/!List/!list)\n"
+                 << "!List: To list all the files and directories in the place where the application is located (!L/!l/!LS/!ls/!List/!list)\n"
                  << "When you use the list command, you will be asked in what kind of list you want to see.\n"
                  << "!Simple: It's a really simple list with just the names of the files and the directories (!S/!s/Simple/!simple)\n"
                  << "!Detailed: It's a really detailed list with the date, space and name of the files and directories (!D/!D/!Detailed/!detailed)\n"
-                 << "!Make: To create a file with some already extesions or with the one desired -by typing when giving the name filename.extension- (!M/!m/!Make/!make)\n"
+                 << "!Make: To create a file with some already extesions or with the one the user desires -by typing when giving the name \"filename.extension\" - (!M/!m/!Make/!make)\n"
+                 << "!Open: To open a file for editing (!O/!o/!Open/!open)\n"
                  << "!Reset: To reset whatever is written in a file without recreating a new file (!R/!r/!Reset/!reset)"<< endl;
             cout << "\nDo you want the list on a text file ? (Y,y or N,n)\n";
             cin >> opt;
@@ -215,15 +221,29 @@ int main(){
                     fout << "!Delete: To delete a file (!D/!d/!Delete/!delete)\n"
                          << "!Exit: To exit the program (!E/!e/!Exit/!exit)\n"
                          << "!Help: To show this list (!H/!h/!Help/!help)\n"
-                         << "!List: To list all the files and directories in the place where the application is located (!L/!l/!List/!list)\n"
+                         << "!List: To list all the files and directories in the place where the application is located (!L/!l/!LS/!ls/!List/!list)\n"
                          << "When you use the list command, you will be asked in what kind of list you want to see.\n"
                          << "!Simple: It's a really simple list with just the names of the files and the directories (!S/!s/Simple/!simple)\n"
                          << "!Detailed: It's a really detailed list with the date, space and name of the files and directories (!D/!D/!Detailed/!detailed)\n"
-                         << "!Make: To create a file with some already extesions or with the one desired -by typing when giving the name filename.extension- (!M/!m/!Make/!make)\n"
+                         << "!Make: To create a file with some already extesions or with the one the user desires -by typing when giving the name \"filename.extension\" - (!M/!m/!Make/!make)\n"
+                         << "!Open: To open a file for editing (!O/!o/!Open/!open)\n"
                          << "!Reset: To reset whatever is written in a file without recreating a new file (!R/!r/!Reset/!reset)\n";
                     cout << "File \"Help_List.txt\" created !\n";
                     fout.close();
             }
+        }else if(command.compare("!Open") == 0 || command.compare("!open") == 0 || command.compare("!O") == 0 || command.compare("!o") == 0){
+            ClearScreen();
+            fin.open(filename, ios::in);
+            if(bool(fin.good())){
+                cout << "File Found!\n";
+                ClearScreen();
+                cout << "To quit the file use !quit\n";
+                while(getline(fin,input) && !fout.eof()){
+                    cout << input << endl;
+                }
+                fin.close();
+            }            
+            //fout.open(filename, ios::out | ios::trunc);
         }
         if(flag != 0){
             cout << "Wanna run the program again ? (1 for Yes/ 0 for No)\n";
@@ -235,5 +255,6 @@ int main(){
             system("cls");
         }
     }while(flag == 1);
+    this_thread::sleep_for(chrono::seconds(1));
     return 0;
 }

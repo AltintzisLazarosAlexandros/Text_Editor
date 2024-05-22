@@ -10,6 +10,7 @@
 #include <cstdio>
 #include <limits>
 #include <algorithm>
+#include <cstdlib>
 using namespace std;
 
 #undef max
