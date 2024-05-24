@@ -1,5 +1,8 @@
-#ifndef DECLARATIONS_HPP
-#define DECLARATIONS_HPP
+/*
+* Holding all the declerations needed for the program to execute and run properly
+*/
+#ifndef DECLARATIONS_H
+#define DECLARATIONS_H
 #pragma once
 #include <iostream>
 #include <fstream>
